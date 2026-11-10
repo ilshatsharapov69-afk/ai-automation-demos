@@ -1,0 +1,23 @@
+name = "faq-booking-demo-bot"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "faq-booking-demo-bot"
+# Replace with the id printed by `npx wrangler d1 create faq-booking-demo-bot` (SETUP.md step 3).
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+# Who the bot is pretending to be is in data/faq.json. Public, non-secret settings:
+DEMO_MODE = "on"          # "on": the visitor also gets a copy of the owner card and an owner view of their own leads
+AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+OWNER_LANG = "ru"        # language of the owner cards sent to OWNER_CHAT_ID
+CONTACT = "@shov69"              # e.g. "@your_username" (shown in "About this demo")
+PORTFOLIO_URL = "https://ilshat-builds.sherlock753cc.workers.dev"        # e.g. "https://<name>.pages.dev"
+# Secrets (never here): BOT_TOKEN, WEBHOOK_SECRET, OWNER_CHAT_ID -> `npx wrangler secret put <NAME>`

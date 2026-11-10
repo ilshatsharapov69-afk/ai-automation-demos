@@ -1,0 +1,29 @@
+name = "price-monitor-demo"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Dashboard (public/) is served as static assets; the Worker answers /api/* and refreshes the data lazily
+# (no cron trigger: a visit to the dashboard starts a run when the last one is older than REFRESH_HOURS).
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "price-monitor-demo"
+# Written by `npm run deploy` on the first run (from `wrangler d1 create`).
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+SOURCE_URL = "https://books.toscrape.com/"   # public practice site made for scraping
+CATEGORIES = "travel_2,mystery_3,classics_6" # category slugs from the site's sidebar URLs
+MAX_PAGES = "20"           # cap on pages per run (free plan: 50 outgoing requests per run)
+DEMO_DRIFT = "on"          # "on" simulates price/stock moves (the practice site is static); "off" for real data
+ALERT_LANG = "ru"          # Telegram alert language: "ru" | "en"
+MIN_CHANGE_PCT = "0"       # do not alert on price moves smaller than this (still stored)
+RETAIN_DAYS = "90"         # history older than this is deleted
+REFRESH_HOURS = "6"        # a visit starts a new run when the last one is older than this
+PUBLIC_URL = "https://price-monitor-demo.sherlock753cc.workers.dev"            # dashboard link in alerts; written by `npm run deploy`
+# Secrets (never here): ADMIN_KEY (manual runs), BOT_TOKEN + TG_CHAT_ID (optional Telegram alerts).

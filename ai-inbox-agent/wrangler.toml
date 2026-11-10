@@ -1,0 +1,32 @@
+name = "ai-inbox-agent-demo"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ai-inbox-agent-demo"
+# Written by `node scripts/deploy.mjs` on the first run (it creates the database).
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+# The business itself is in data/business.js. Public, non-secret settings:
+DEMO_MODE = "on"          # "on": public inbox (read-only samples + the visitor's own messages); "off": private, needs ADMIN_KEY
+OWNER_LANG = "ru"         # language of the owner's Telegram cards: "ru" or "en"
+NOTIFY = "hot"            # "hot": only hot leads go to Telegram; "all": every request except spam
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"             # reads the message (clean JSON, checked by the rules)
+AI_DRAFT_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"  # writes the reply (better Russian)
+AI_DAILY_CAP = "30"       # AI-read messages per day for the whole demo (one message = classify + draft); past it: rules and templates, with a visible note
+AI_IP_HOURLY = "5"        # AI-read messages per visitor IP per hour
+SUBMIT_HOURLY = "20"      # form submissions per visitor IP per hour (any path)
+AI_MODE = "on"            # "off": rules only, no AI calls at all
+TG_WEBHOOK = "closed"     # public demo without a bot: /telegram stays closed (owner cards are shown as previews)
+# Secrets (never here), set by scripts/deploy.mjs or `npx wrangler secret put <NAME>`:
+#   BOT_TOKEN, WEBHOOK_SECRET, OWNER_CHAT_ID  - Telegram bot and the owner's chat
+#   ADMIN_KEY                                 - the owner view: every message, real sending (/inbox?key=...)
+#   INBOX_SECRET                              - header X-Inbox-Secret for POST /api/email and POST /api/seed
+#   REPLY_WEBHOOK_URL (+ REPLY_WEBHOOK_SECRET) - optional: approved email/form replies are POSTed here to be sent

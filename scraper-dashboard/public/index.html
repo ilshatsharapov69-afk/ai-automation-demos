@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Price monitor · demo</title>
+  <meta name="description" content="Demo price monitor: it scrapes a public test shop, keeps price history, shows changes and exports CSV. Refreshes itself.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 12l4-4 3 3 6-7' fill='none' stroke='%232a78d6' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-9" /></svg>
+      <div>
+        <h1 data-i18n="title">Price monitor</h1>
+        <p class="muted" id="source"></p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="pill" id="lastRun">…</span>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ru">RU</button>
+      </div>
+    </div>
+  </header>
+
+  <p class="intro" id="intro" data-i18n="intro"></p>
+
+  <div class="banner" id="demoBanner" hidden>
+    <strong data-i18n="demoTitle">Demo mode.</strong> <span data-i18n="demoText"></span>
+  </div>
+
+  <main>
+    <section class="tiles" id="tiles" aria-label="Summary"></section>
+
+    <div class="main-grid">
+    <section class="card">
+      <form class="filters" id="filters" autocomplete="off">
+        <label class="grow"><span data-i18n="search">Search</span><input type="search" name="q" data-i18n-ph="searchPh"></label>
+        <label><span data-i18n="category">Category</span><select name="category"><option value="" data-i18n="all">All</option></select></label>
+        <label class="num"><span data-i18n="priceFrom">Price from</span><input type="number" name="min" min="0" step="0.01" inputmode="decimal"></label>
+        <label class="num"><span data-i18n="priceTo">to</span><input type="number" name="max" min="0" step="0.01" inputmode="decimal"></label>
+        <label><span data-i18n="stock">Stock</span><select name="stock">
+          <option value="" data-i18n="any">Any</option><option value="in" data-i18n="inStock">In stock</option><option value="out" data-i18n="outStock">Out of stock</option>
+        </select></label>
+        <label><span data-i18n="changed">Changed</span><select name="changed">
+          <option value="" data-i18n="anyTime">Any time</option><option value="1" data-i18n="d1">Last 24 h</option><option value="7" data-i18n="d7">Last 7 days</option><option value="30" data-i18n="d30">Last 30 days</option>
+        </select></label>
+        <label><span data-i18n="sort">Sort</span><select name="sort">
+          <option value="last_change" data-i18n="sLast">Last change</option><option value="change" data-i18n="sChange">Change %</option>
+          <option value="price" data-i18n="sPrice">Price</option><option value="title" data-i18n="sTitle">Title</option><option value="rating" data-i18n="sRating">Rating</option>
+        </select></label>
+        <label><span data-i18n="order">Order</span><select name="dir"><option value="desc" data-i18n="desc">Desc</option><option value="asc" data-i18n="asc">Asc</option></select></label>
+        <div class="filter-actions">
+          <button type="button" class="ghost" id="reset" data-i18n="reset">Reset</button>
+          <a class="btn" id="csv" download data-i18n="csv">Export CSV</a>
+        </div>
+      </form>
+
+      <div class="table-wrap">
+        <table class="items" id="items">
+          <thead><tr>
+            <th data-i18n="thTitle">Title</th><th class="r" data-i18n="thPrice">Price</th>
+            <th class="r" data-i18n="thChange">Change</th><th data-i18n="thRating">Rating</th><th data-i18n="thStock">Stock</th><th data-i18n="thLast">Last change</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="pager">
+        <span class="muted" id="count"></span>
+        <div><button type="button" class="ghost" id="prev">←</button><button type="button" class="ghost" id="next">→</button></div>
+      </div>
+    </section>
+    <div class="side">
+      <section class="card" id="historyCard">
+        <div class="card-head">
+          <div>
+            <h2 data-i18n="history">Price history</h2>
+            <p class="muted" id="historyTitle" data-i18n="pick">Pick a row in the table.</p>
+          </div>
+          <a class="btn ghost small" id="historyLink" target="_blank" rel="noopener" hidden data-i18n="openSource">Open on site</a>
+        </div>
+        <div class="chart" id="historyChart"></div>
+      </section>
+      <section class="card">
+        <div class="card-head"><div><h2 data-i18n="perRun">Changes per run</h2><p class="muted" data-i18n="perRunSub">Price and stock changes found by each refresh.</p></div></div>
+        <div class="chart" id="runsChart"></div>
+      </section>
+    </div>
+
+    </div>
+
+    <div class="grid2">
+      <section class="card">
+        <div class="card-head">
+          <div><h2 data-i18n="feed">Recent changes</h2></div>
+          <a class="btn ghost small" id="csvChanges" download data-i18n="csvChanges">Changes CSV</a>
+        </div>
+        <div class="table-wrap short"><table class="feed" id="feed"><tbody></tbody></table></div>
+      </section>
+      <section class="card">
+        <div class="card-head"><div><h2 data-i18n="runs">Run log</h2><p class="muted" id="schedule"></p></div></div>
+        <div class="table-wrap short">
+          <table class="runs" id="runs">
+            <thead><tr><th>#</th><th data-i18n="rTime">Started</th><th data-i18n="rStatus">Status</th><th class="r" data-i18n="rPages">Pages</th><th class="r" data-i18n="rItems">Items</th><th class="r" data-i18n="rChanges">Changes</th><th class="r" data-i18n="rTook">Took</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="muted">
+    <span data-i18n="footer"></span>
+    <a id="builtBy" href="https://ilshat-builds.sherlock753cc.workers.dev/" target="_blank" rel="noopener" data-i18n="builtBy">Built by Ilshat</a>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="status" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

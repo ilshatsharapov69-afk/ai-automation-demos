@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Brasswick CRM</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="banner" id="banner" role="note" hidden></div>
+  <header class="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">B</span>
+      <div>
+        <div class="brand-name" id="ws-name">Brasswick Interiors</div>
+        <div class="brand-sub" id="ws-sub">Sales CRM</div>
+      </div>
+    </div>
+    <button class="lang" id="lang-btn" type="button" aria-label="Language">RU</button>
+  </header>
+  <main id="view" aria-live="polite"><div class="loading"><span class="spinner"></span></div></main>
+  <nav class="tabs" id="tabs" hidden>
+    <a href="#/leads" data-tab="leads">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 1a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm8 1c-2.7 0-8 1.3-8 4v2h16v-2c0-2.7-5.3-4-8-4Zm-8 .1C4.9 13.3 1 14.6 1 17v2h5v-2c0-1.5.8-2.8 2-3.9Z"/></svg>
+      <span data-t="tabLeads">Leads</span>
+    </a>
+    <a href="#/reminders" data-tab="reminders">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.5-2.5h-5A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 0 0-5.5-6.8V3.5a1.5 1.5 0 0 0-3 0v.7A7 7 0 0 0 5 11v5l-2 2v1h18v-1Z"/></svg>
+      <span data-t="tabReminders">Reminders</span><b class="badge" id="rem-badge" hidden></b>
+    </a>
+    <a href="#/stats" data-tab="stats">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10h3v10Zm6.5 0V4h3v16ZM17 20v-7h3v7Z"/></svg>
+      <span data-t="tabStats">Stats</span>
+    </a>
+  </nav>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

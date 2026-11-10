@@ -1,0 +1,31 @@
+{
+  // Video Packager demo: static page (public/) + one Worker route (/api/package) + Workers AI.
+  // Deploy: `npx wrangler deploy` from this folder (uses the existing wrangler login; no secrets needed; D1 only counts AI calls).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "video-packager-demo",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "video-packager-demo", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }
+  ],
+  "vars": {
+    // Small model: the free daily allowance is shared with another demo, so each run must be cheap.
+    "AI_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast",
+    // AI caps: a visitor over the cap gets the offline generator, with a visible note.
+    "AI_PER_IP_HOUR": "5",
+    "AI_GLOBAL_DAY": "60",
+    // "off" = never call the AI, always use the offline generator (zero AI usage).
+    "AI_ENABLED": "on"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

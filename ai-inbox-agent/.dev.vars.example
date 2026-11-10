@@ -1,0 +1,3 @@
+# Copy to .dev.vars for `npm run dev`. No BOT_TOKEN: Telegram calls are returned in the JSON responses instead.
+OWNER_CHAT_ID=900001
+OWNER_LANG=en

@@ -1,0 +1,22 @@
+{
+  "name": "price-monitor-demo",
+  "version": "1.0.0",
+  "description": "Demo price/listing monitor: scrapes a practice site and refreshes itself (Cloudflare Worker, lazy run, no cron), stores snapshots in D1, dashboard with filters, price chart and CSV export, optional Telegram alerts.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test --test-reporter=spec test/*.test.mjs",
+    "demo": "node --disable-warning=ExperimentalWarning scripts/local.mjs",
+    "shots": "node --disable-warning=ExperimentalWarning scripts/shots.mjs",
+    "fixtures": "node scripts/fetch-fixtures.mjs",
+    "dev": "wrangler dev",
+    "db:local": "wrangler d1 migrations apply price-monitor-demo --local",
+    "deploy": "node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.157.0"
+  }
+}

@@ -1,0 +1,10 @@
+.env
+service_account.json
+*.db
+leads.csv
+result.csv
+books.csv
+books.json
+__pycache__/
+.pytest_cache/
+.venv/

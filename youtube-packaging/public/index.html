@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Packager</title>
+  <meta name="description" content="Paste a script or transcript and get titles, a description with chapters, tags, a pinned comment and thumbnail text. Unofficial demo tool.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b5bf7'/%3E%3Cpath d='M9 11l7-4 7 4v10l-7 4-7-4z' fill='none' stroke='white' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M9 11l7 4 7-4M16 15v10' fill='none' stroke='white' stroke-width='2.2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M9 11l7-4 7 4v10l-7 4-7-4z M9 11l7 4 7-4M16 15v10"/></svg>
+        <div>
+          <div class="brand-name" data-i="brand"></div>
+          <div class="tagline" data-i="tagline"></div>
+        </div>
+      </div>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ru">RU</button>
+      </div>
+    </div>
+    <nav class="wrap tabs" role="tablist">
+      <button type="button" role="tab" data-tab="package" data-i="tabPackage"></button>
+      <button type="button" role="tab" data-tab="outliers" data-i="tabOutliers"></button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="lead card" aria-label="Lead feature">
+      <div class="lead-t"><span class="lead-tag" data-i="leadTag"></span><strong data-i="leadTitle"></strong></div>
+      <p class="lead-p" data-i="leadText"></p>
+      <button type="button" class="btn primary" id="lead-go" data-i="leadBtn"></button>
+    </section>
+    <!-- 1. Packaging -->
+    <section id="tab-package" class="tab">
+      <form id="pkg-form" class="card form" autocomplete="off">
+        <label class="lbl" for="text" data-i="inputLabel"></label>
+        <textarea id="text" rows="10" spellcheck="false" data-ph="placeholder"></textarea>
+        <p class="hint" data-i="inputHint"></p>
+        <div class="row">
+          <label class="field grow">
+            <span class="lbl" data-i="keywordLabel"></span>
+            <input id="keyword" type="text" maxlength="80" data-ph="keywordPh">
+          </label>
+          <label class="field">
+            <span class="lbl" data-i="outLangLabel"></span>
+            <select id="outlang">
+              <option value="auto" data-i="auto"></option>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+            </select>
+          </label>
+        </div>
+        <div class="row actions">
+          <button type="button" class="btn ghost" data-sample="en" data-i="sampleEn"></button>
+          <button type="button" class="btn ghost" data-sample="ru" data-i="sampleRu"></button>
+          <label class="btn ghost file"><span data-i="upload"></span><input id="file" type="file" accept=".txt,.srt,.vtt,.md,text/plain"></label>
+          <span class="spacer"></span>
+          <button type="submit" class="btn primary" id="go" data-i="generate"></button>
+        </div>
+        <p class="error" id="pkg-error" hidden></p>
+      </form>
+
+      <div id="result" hidden>
+        <div class="statusbar card">
+          <span class="badge" id="src"></span>
+          <span class="meta" id="meta"></span>
+          <span class="spacer"></span>
+          <button type="button" class="btn small" id="copy-all" data-i="copyAll"></button>
+        </div>
+        <p class="note" id="note" hidden></p>
+
+        <div class="grid">
+          <article class="card" id="card-thumbs">
+            <header class="card-h"><h2 data-i="thumbs"></h2></header>
+            <p class="hint" data-i="thumbsHint"></p>
+            <div class="thumbs" id="thumbs"></div>
+          </article>
+
+          <article class="card" id="card-titles">
+            <header class="card-h"><h2 data-i="titles"></h2></header>
+            <p class="hint" data-i="titlesHint"></p>
+            <ol class="titles" id="titles"></ol>
+          </article>
+
+
+          <article class="card" id="card-desc">
+            <header class="card-h"><h2 data-i="description"></h2><span class="count" id="desc-count"></span><button type="button" class="btn small" data-copy="desc" data-i="copy"></button></header>
+            <pre class="desc" id="desc"></pre>
+            <div class="checks" id="checks"></div>
+          </article>
+
+          <article class="card" id="card-tags">
+            <header class="card-h"><h2 data-i="tags"></h2><span class="count" id="tags-count"></span><button type="button" class="btn small" data-copy="tags" data-i="copy"></button></header>
+            <p class="hint" data-i="tagsHint"></p>
+            <div class="chips" id="tags"></div>
+          </article>
+
+          <article class="card" id="card-pinned">
+            <header class="card-h"><h2 data-i="pinned"></h2><button type="button" class="btn small" data-copy="pinned" data-i="copy"></button></header>
+            <div class="comment"><span class="avatar" aria-hidden="true"></span><p id="pinned"></p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Outliers -->
+    <section id="tab-outliers" class="tab" hidden>
+      <form id="out-form" class="card form" autocomplete="off">
+        <h2 class="h" data-i="outTitle"></h2>
+        <p class="hint" data-i="outIntro"></p>
+        <textarea id="out-text" rows="6" spellcheck="false" data-ph="outPh"></textarea>
+        <p class="hint" data-i="outFormats"></p>
+        <div class="row actions">
+          <label class="inline"><span data-i="threshold"></span> <input id="threshold" type="number" min="1" max="100" step="0.5" value="3"> <span data-i="thresholdSuffix"></span></label>
+          <span class="spacer"></span>
+          <button type="button" class="btn ghost" id="sample-out" data-i="sampleOut"></button>
+          <button type="submit" class="btn primary" data-i="analyze"></button>
+        </div>
+        <p class="error" id="out-error" hidden></p>
+      </form>
+
+      <div id="out-result" hidden>
+        <p class="demo-flag" id="demo-flag" data-i="demoData" hidden></p>
+        <div class="stats">
+          <div class="stat card"><div class="stat-v" id="st-n"></div><div class="stat-l" data-i="videos"></div></div>
+          <div class="stat card"><div class="stat-v" id="st-med"></div><div class="stat-l" data-i="medianRatio"></div></div>
+          <div class="stat card hot"><div class="stat-v" id="st-out"></div><div class="stat-l" data-i="outliersN"></div></div>
+        </div>
+        <div class="card table-card">
+          <table class="tbl">
+            <thead><tr><th class="num">#</th><th data-i="colTitle"></th><th data-i="colRatio"></th><th class="num" data-i="colViews"></th><th class="num" data-i="colSubs"></th><th class="num" data-i="colMedian"></th></tr></thead>
+            <tbody id="out-rows"></tbody>
+          </table>
+        </div>
+        <div class="card" id="out-skipped" hidden>
+          <h3 data-i="skipped"></h3>
+          <ul id="out-errs"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p data-i="footer"></p>
+    <p class="by"><a id="by-link" href="https://ilshat-builds.sherlock753cc.workers.dev/" data-i="builtBy"></a> · <a href="https://t.me/shov69" data-i="contact"></a></p>
+  </footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

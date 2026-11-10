@@ -1,0 +1,19 @@
+{
+  "name": "ai-inbox-agent",
+  "version": "1.0.0",
+  "description": "Demo AI inbox agent: web form + email webhook + Telegram -> classify, extract, score, draft from the FAQ, owner approves in Telegram; web inbox (Cloudflare Workers + D1 + Workers AI).",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/*.test.mjs\"",
+    "dev": "wrangler dev --port 18798 --ip 127.0.0.1",
+    "db:local": "wrangler d1 migrations apply ai-inbox-agent --local",
+    "seed": "node scripts/seed.mjs",
+    "shots": "node --disable-warning=ExperimentalWarning scripts/shots.mjs",
+    "deploy": "node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.157.0"
+  }
+}

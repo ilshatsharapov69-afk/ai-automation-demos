@@ -1,0 +1,1138 @@
+{
+ "run": "2026-11-04T09:45:19.506Z",
+ "owner": 999,
+ "steps": [
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"/start\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Hi! I am the assistant of <b>Lumi Beauty Studio</b>, a fictional beauty studio made to demo this bot.\n\nWhat I can do:\n• answer questions about prices, hours and services (try: \"how much is a manicure?\")\n• book a visit in a few taps\n• take a request and pass it to the owner\n\nEvery booking goes to the owner's Telegram with Confirm and Decline buttons. In this demo you get a copy of that owner card, and \"Owner view\" opens the admin panel.\n\nUse test data, not your real phone number.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Ask a question"
+        },
+        {
+         "text": "📅 Book a visit"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Leave a request"
+        },
+        {
+         "text": "📊 Owner view"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ About this demo"
+        },
+        {
+         "text": "🌐 Русский"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"how much is a manicure?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "ai"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "A manicure costs $35 and takes 60 minutes.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "📅 Book a visit",
+         "callback_data": "go:book"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"do you work on sundays?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "ai"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Yes, we are open every day, including Sundays, from 10:00 to 20:00.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "📅 Book a visit",
+         "callback_data": "go:book"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"can I pay with bitcoin?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "none"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "I do not have an exact answer to that. I can pass your question to the studio and they will reply here.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✍️ Pass it to the studio",
+         "callback_data": "go:handoff"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"do you do wedding makeup at home?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "none"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "I do not have an exact answer to that. I can pass your question to the studio and they will reply here.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✍️ Pass it to the studio",
+         "callback_data": "go:handoff"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `go:handoff`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "7"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Leave a request and the studio will write back here. Your name?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"Anna\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Your phone number? Tap the button below or type it (a test number is fine).",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "📱 Share my number",
+         "request_contact": true
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "one_time_keyboard": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"+1 555 0100\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Thank you. Request #1 is sent to the studio, they will reply here.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Ask a question"
+        },
+        {
+         "text": "📅 Book a visit"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Leave a request"
+        },
+        {
+         "text": "📊 Owner view"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ About this demo"
+        },
+        {
+         "text": "🌐 Русский"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 999,
+     "text": "<b>🆕 New request #1</b>\nAnna · +1 555 0100\ndo you do wedding makeup at home? (@test_en)\nStatus: new",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Confirm",
+         "callback_data": "own:ok:1"
+        },
+        {
+         "text": "❌ Decline",
+         "callback_data": "own:no:1"
+        }
+       ]
+      ]
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "👀 Demo: this is the card the business owner gets in their Telegram. The buttons work, try them:",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "<b>🆕 New request #1</b>\nAnna · +1 555 0100\ndo you do wedding makeup at home? (@test_en)\nStatus: new",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Confirm",
+         "callback_data": "own:ok:1"
+        },
+        {
+         "text": "❌ Decline",
+         "callback_data": "own:no:1"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"📅 Book a visit\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Step 1 of 4. Which service?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "Manicure · $35",
+         "callback_data": "svc:mani"
+        }
+       ],
+       [
+        {
+         "text": "Pedicure · $45",
+         "callback_data": "svc:pedi"
+        }
+       ],
+       [
+        {
+         "text": "Haircut · $40",
+         "callback_data": "svc:cut"
+        }
+       ],
+       [
+        {
+         "text": "Hair colouring · from $90",
+         "callback_data": "svc:color"
+        }
+       ],
+       [
+        {
+         "text": "Brows and lashes · $30",
+         "callback_data": "svc:brows"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `svc:mani`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "11"
+    },
+    {
+     "method": "editMessageText",
+     "chat_id": 222,
+     "message_id": 5011,
+     "text": "Step 2 of 4. Manicure: which day?",
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "Wed 4 Nov",
+         "callback_data": "day:2026-11-04"
+        },
+        {
+         "text": "Thu 5 Nov",
+         "callback_data": "day:2026-11-05"
+        },
+        {
+         "text": "Fri 6 Nov",
+         "callback_data": "day:2026-11-06"
+        }
+       ],
+       [
+        {
+         "text": "Sat 7 Nov",
+         "callback_data": "day:2026-11-07"
+        },
+        {
+         "text": "Sun 8 Nov",
+         "callback_data": "day:2026-11-08"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `day:2026-11-05`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "12"
+    },
+    {
+     "method": "editMessageText",
+     "chat_id": 222,
+     "message_id": 5012,
+     "text": "Step 3 of 4. Manicure, Thu 5 Nov: which time?",
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "10:00",
+         "callback_data": "slot:10:00"
+        },
+        {
+         "text": "12:00",
+         "callback_data": "slot:12:00"
+        },
+        {
+         "text": "14:00",
+         "callback_data": "slot:14:00"
+        }
+       ],
+       [
+        {
+         "text": "16:00",
+         "callback_data": "slot:16:00"
+        },
+        {
+         "text": "18:00",
+         "callback_data": "slot:18:00"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `slot:14:00`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "13"
+    },
+    {
+     "method": "editMessageText",
+     "chat_id": 222,
+     "message_id": 5013,
+     "text": "Manicure, Thu 5 Nov 14:00 ✓"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Step 4 of 4. Your name?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"Anna\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Your phone number? Tap the button below or type it (a test number is fine).",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "📱 Share my number",
+         "request_contact": true
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "one_time_keyboard": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"not a phone\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "That does not look like a phone number or a @username. Please send it again.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"+1 555 0100\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Got it.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Ask a question"
+        },
+        {
+         "text": "📅 Book a visit"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Leave a request"
+        },
+        {
+         "text": "📊 Owner view"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ About this demo"
+        },
+        {
+         "text": "🌐 Русский"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Please check your booking:\n\nManicure, Thu 5 Nov 14:00\nAnna · +1 555 0100\n\nConfirm?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Confirm",
+         "callback_data": "bk:ok"
+        },
+        {
+         "text": "✖️ Cancel",
+         "callback_data": "bk:no"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `bk:ok`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "17",
+     "text": "Saved."
+    },
+    {
+     "method": "editMessageReplyMarkup",
+     "chat_id": 222,
+     "message_id": 5017,
+     "reply_markup": {
+      "inline_keyboard": []
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Done. Booking #2 is sent to the studio. You will get a message here as soon as they confirm it.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Ask a question"
+        },
+        {
+         "text": "📅 Book a visit"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Leave a request"
+        },
+        {
+         "text": "📊 Owner view"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ About this demo"
+        },
+        {
+         "text": "🌐 Русский"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 999,
+     "text": "<b>🆕 New booking #2</b>\nManicure, Thu 5 Nov 14:00\nAnna · +1 555 0100 (@test_en)\nStatus: new",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Confirm",
+         "callback_data": "own:ok:2"
+        },
+        {
+         "text": "❌ Decline",
+         "callback_data": "own:no:2"
+        }
+       ]
+      ]
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "👀 Demo: this is the card the business owner gets in their Telegram. The buttons work, try them:",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "<b>🆕 New booking #2</b>\nManicure, Thu 5 Nov 14:00\nAnna · +1 555 0100 (@test_en)\nStatus: new",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Confirm",
+         "callback_data": "own:ok:2"
+        },
+        {
+         "text": "❌ Decline",
+         "callback_data": "own:no:2"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `bk:ok`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "18"
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `slot:16:00`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "19"
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"сколько стоит педикюр?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "ai"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Педикюр стоит 2 500 ₽, продолжительность процедуры 75 минут.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "📅 Book a visit",
+         "callback_data": "go:book"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "taps `own:ok:2`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "21",
+     "text": "Это не ваша заявка."
+    }
+   ]
+  },
+  {
+   "user": "owner",
+   "uid": 999,
+   "label": "taps `own:ok:2`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "22",
+     "text": "Status: confirmed"
+    },
+    {
+     "method": "editMessageText",
+     "chat_id": 999,
+     "message_id": 5022,
+     "text": "<b>🆕 New booking #2</b>\nManicure, Thu 5 Nov 14:00\nAnna · +1 555 0100 (@test_en)\nStatus: confirmed",
+     "parse_mode": "HTML",
+     "reply_markup": {
+      "inline_keyboard": []
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "✅ The studio confirmed booking #2: Manicure, Thu 5 Nov 14:00. See you!",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "taps `own:no:2`",
+   "out": [
+    {
+     "method": "answerCallbackQuery",
+     "callback_query_id": "23",
+     "text": "Status: confirmed"
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"/start\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Здравствуйте! Я ассистент <b>Lumi Beauty Studio</b>, вымышленной студии красоты, сделанной для демонстрации этого бота.\n\nЧто я умею:\n• отвечать на вопросы о ценах, графике и услугах (попробуйте: «сколько стоит маникюр?»)\n• записывать на визит в несколько нажатий\n• принимать заявку и передавать её владельцу\n\nКаждая запись приходит владельцу в Telegram с кнопками «Подтвердить» и «Отклонить». В демо вам приходит копия этой карточки, а «Кабинет владельца» открывает админку.\n\nВводите тестовые данные, не свой настоящий номер.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Задать вопрос"
+        },
+        {
+         "text": "📅 Записаться"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Оставить заявку"
+        },
+        {
+         "text": "📊 Кабинет владельца"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ О демо"
+        },
+        {
+         "text": "🌐 English"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"сколько стоит окрашивание?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "ai"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Окрашивание стоит от 5 000 ₽, цена зависит от длины и техники, точную цену мастер называет после короткого осмотра волос.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "📅 Записаться",
+         "callback_data": "go:book"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"Можно оплатить картой?\"",
+   "out": [
+    {
+     "method": "_debug",
+     "answer_source": "ai"
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Да, можно оплатить картой или наличными после визита.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "📅 Записаться",
+         "callback_data": "go:book"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"✍️ Оставить заявку\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Оставьте заявку, и студия ответит вам здесь. Как вас зовут?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"Мария\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Ваш телефон? Нажмите кнопку ниже или напишите его (можно тестовый).",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "📱 Отправить мой номер",
+         "request_contact": true
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "one_time_keyboard": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"@maria_test\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Какой у вас вопрос или запрос?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Задать вопрос"
+        },
+        {
+         "text": "📅 Записаться"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Оставить заявку"
+        },
+        {
+         "text": "📊 Кабинет владельца"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ О демо"
+        },
+        {
+         "text": "🌐 English"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"Хочу подарочный сертификат на 3000 рублей\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "Спасибо. Заявка #3 отправлена в студию, ответ придёт сюда.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Задать вопрос"
+        },
+        {
+         "text": "📅 Записаться"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Оставить заявку"
+        },
+        {
+         "text": "📊 Кабинет владельца"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ О демо"
+        },
+        {
+         "text": "🌐 English"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 999,
+     "text": "<b>🆕 New request #3</b>\nМария · @maria_test\nХочу подарочный сертификат на 3000 рублей (@test_ru)\nStatus: new",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Confirm",
+         "callback_data": "own:ok:3"
+        },
+        {
+         "text": "❌ Decline",
+         "callback_data": "own:no:3"
+        }
+       ]
+      ]
+     }
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "👀 Демо: вот такая карточка приходит владельцу бизнеса в Telegram. Кнопки работают, нажмите:",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    },
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "<b>🆕 Новая заявка #3</b>\nМария · @maria_test\nХочу подарочный сертификат на 3000 рублей (@test_ru)\nСтатус: новая",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "inline_keyboard": [
+       [
+        {
+         "text": "✅ Подтвердить",
+         "callback_data": "own:ok:3"
+        },
+        {
+         "text": "❌ Отклонить",
+         "callback_data": "own:no:3"
+        }
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_ru",
+   "uid": 111,
+   "label": "\"📊 Кабинет владельца\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 111,
+     "text": "<b>📊 Кабинет владельца, демо: вы видите только свои тестовые заявки. Настоящий владелец видит здесь заявки всех клиентов.</b>\n\nЗаявок сегодня: 1 · всего: 1\nЗаписи: 0 (новых 0, подтверждено 0, отклонено 0)\nЗаявки: 1\nВопросов задано: 2, отвечено по FAQ: 2\n\nПоследние заявки:\n#3 Заявка · Мария · Хочу подарочный сертификат на 3000 рубле · новая",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "owner",
+   "uid": 999,
+   "label": "\"/admin\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 999,
+     "text": "<b>📊 Owner view (all leads)</b>\n\nLeads today: 3 · total: 3\nBookings: 1 (new 0, confirmed 1, declined 0)\nRequests: 2\nQuestions asked: 7, answered from the FAQ: 5\n\nLast leads:\n#3 Request · Мария · Хочу подарочный сертификат на 3000 рубле · new\n#2 Manicure · Thu 5 Nov 14:00 · Anna · confirmed\n#1 Request · Anna · do you do wedding makeup at home? · new\n\nQuestions the bot could not answer (add them to the FAQ):\n• do you do wedding makeup at home?\n• can I pay with bitcoin?",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"🌐 Русский\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Язык: русский.",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true,
+     "reply_markup": {
+      "keyboard": [
+       [
+        {
+         "text": "💬 Задать вопрос"
+        },
+        {
+         "text": "📅 Записаться"
+        }
+       ],
+       [
+        {
+         "text": "✍️ Оставить заявку"
+        },
+        {
+         "text": "📊 Кабинет владельца"
+        }
+       ],
+       [
+        {
+         "text": "ℹ️ О демо"
+        },
+        {
+         "text": "🌐 English"
+        }
+       ]
+      ],
+      "resize_keyboard": true,
+      "is_persistent": true
+     }
+    }
+   ]
+  },
+  {
+   "user": "test_en",
+   "uid": 222,
+   "label": "\"/id\"",
+   "out": [
+    {
+     "method": "sendMessage",
+     "chat_id": 222,
+     "text": "Ваш chat id: <code>222</code>",
+     "parse_mode": "HTML",
+     "disable_web_page_preview": true
+    }
+   ]
+  }
+ ]
+}

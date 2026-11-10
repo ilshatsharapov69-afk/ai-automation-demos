@@ -1,0 +1,95 @@
+{
+  "business": {
+    "name": "Lumi Beauty Studio",
+    "note_en": "Fictional demo business. Every fact below is invented to show how the bot works.",
+    "note_ru": "Вымышленный демо-бизнес. Все факты ниже придуманы, чтобы показать работу бота."
+  },
+  "services": [
+    { "id": "mani", "en": "Manicure", "ru": "Маникюр", "price_en": "$35", "price_ru": "2 000 ₽", "min": 60 },
+    { "id": "pedi", "en": "Pedicure", "ru": "Педикюр", "price_en": "$45", "price_ru": "2 500 ₽", "min": 75 },
+    { "id": "cut", "en": "Haircut", "ru": "Стрижка", "price_en": "$40", "price_ru": "2 200 ₽", "min": 45 },
+    { "id": "color", "en": "Hair colouring", "ru": "Окрашивание", "price_en": "from $90", "price_ru": "от 5 000 ₽", "min": 150 },
+    { "id": "brows", "en": "Brows and lashes", "ru": "Брови и ресницы", "price_en": "$30", "price_ru": "1 700 ₽", "min": 40 }
+  ],
+  "slots": ["10:00", "12:00", "14:00", "16:00", "18:00"],
+  "faq": [
+    {
+      "id": "hours",
+      "kw": ["hour", "open", "close", "time", "when", "weekend", "sunday", "saturday", "работ", "часы", "откры", "закры", "выходн", "воскрес", "суббот", "график", "когда"],
+      "en": "We are open every day from 10:00 to 20:00, including weekends. The last booking starts at 18:00.",
+      "ru": "Работаем каждый день с 10:00 до 20:00, в выходные тоже. Последняя запись начинается в 18:00."
+    },
+    {
+      "id": "prices",
+      "kw": ["price", "cost", "how much", "menu", "list", "цен", "стоим", "сколько", "прайс", "стоит"],
+      "en": "Manicure $35 (60 min), pedicure $45 (75 min), haircut $40 (45 min), hair colouring from $90 (about 2.5 h), brows and lashes $30 (40 min).",
+      "ru": "Маникюр 2 000 ₽ (60 мин), педикюр 2 500 ₽ (75 мин), стрижка 2 200 ₽ (45 мин), окрашивание от 5 000 ₽ (около 2,5 ч), брови и ресницы 1 700 ₽ (40 мин)."
+    },
+    {
+      "id": "colour",
+      "kw": ["colour", "color", "dye", "blond", "balayage", "roots", "окраш", "покрас", "блонд", "балаяж", "корни", "цвет"],
+      "en": "Colouring starts at $90 and depends on hair length and technique. Roots only take about 1.5 hours; full colour or balayage about 2.5 to 3 hours. The stylist confirms the final price after a short look at your hair.",
+      "ru": "Окрашивание от 5 000 ₽, цена зависит от длины и техники. Только корни около 1,5 часа, полное окрашивание или балаяж 2,5-3 часа. Точную цену мастер называет после короткого осмотра волос."
+    },
+    {
+      "id": "payment",
+      "kw": ["pay", "card", "cash", "payment", "invoice", "оплат", "карт", "налич", "плат", "сбп", "перевод"],
+      "en": "You can pay by card or in cash after the visit. No prepayment is needed for regular services.",
+      "ru": "Оплата картой или наличными после визита. Для обычных услуг предоплата не нужна."
+    },
+    {
+      "id": "cancel",
+      "kw": ["cancel", "reschedule", "late", "move", "change", "отмен", "перенес", "перенос", "опозд", "поменя"],
+      "en": "You can cancel or move a booking free of charge up to 3 hours before it starts. If you are more than 15 minutes late, we may need to shorten the service or move it.",
+      "ru": "Отменить или перенести запись можно бесплатно за 3 часа до начала. Если опаздываете больше чем на 15 минут, услугу придётся сократить или перенести."
+    },
+    {
+      "id": "first",
+      "kw": ["first", "discount", "promo", "new client", "sale", "offer", "перв", "скидк", "акци", "промо", "новым"],
+      "en": "New clients get 10% off the first visit. Just mention it when you book.",
+      "ru": "Новым клиентам скидка 10% на первый визит. Просто скажите об этом при записи."
+    },
+    {
+      "id": "gift",
+      "kw": ["gift", "certificate", "voucher", "present", "подар", "сертифик"],
+      "en": "Gift certificates are available for any amount from $30 and are valid for 6 months.",
+      "ru": "Подарочные сертификаты есть на любую сумму от 1 500 ₽, действуют 6 месяцев."
+    },
+    {
+      "id": "kids",
+      "kw": ["kid", "child", "children", "son", "daughter", "baby", "дет", "ребён", "ребен", "сын", "доч"],
+      "en": "Children's haircuts are $25 for kids under 12. Children are welcome to come with a parent.",
+      "ru": "Детская стрижка до 12 лет стоит 1 400 ₽. С детьми приходить можно."
+    },
+    {
+      "id": "materials",
+      "kw": ["material", "brand", "gel", "polish", "sterile", "steril", "hygien", "safe", "материал", "гель", "лак", "стерил", "гигиен", "безопас", "бренд"],
+      "en": "Tools are sterilised in a dry-heat cabinet after every client, files are single-use, and we use hypoallergenic gel polish.",
+      "ru": "Инструменты стерилизуем в сухожаре после каждого клиента, пилки одноразовые, гель-лак гипоаллергенный."
+    },
+    {
+      "id": "duration",
+      "kw": ["long", "duration", "minutes", "take", "долго", "длит", "минут", "сколько времени", "занимает"],
+      "en": "Manicure takes about 60 minutes, pedicure 75, haircut 45, brows and lashes 40, colouring 2.5 to 3 hours.",
+      "ru": "Маникюр около 60 минут, педикюр 75, стрижка 45, брови и ресницы 40, окрашивание 2,5-3 часа."
+    },
+    {
+      "id": "parking",
+      "kw": ["park", "car", "address", "where", "location", "find you", "парков", "машин", "адрес", "где вы", "как найти", "добрат"],
+      "en": "This is a fictional demo studio, so it has no real address. In a real bot this answer would give the address, a map link and parking tips.",
+      "ru": "Это вымышленная демо-студия, поэтому реального адреса нет. В настоящем боте здесь будет адрес, ссылка на карту и подсказка про парковку."
+    },
+    {
+      "id": "masters",
+      "kw": ["master", "stylist", "who", "specialist", "experience", "мастер", "стилист", "специалист", "опыт", "кто"],
+      "en": "Four specialists work here: two nail masters, one hair stylist and one brow artist, each with at least 3 years of experience.",
+      "ru": "У нас четыре мастера: два мастера маникюра, стилист по волосам и бровист, у каждого опыт от 3 лет."
+    },
+    {
+      "id": "same_day",
+      "kw": ["today", "now", "urgent", "same day", "asap", "сегодня", "сейчас", "срочно", "прямо"],
+      "en": "Same-day visits are often possible. Book through the button below and the studio confirms the time in the chat.",
+      "ru": "Записаться на сегодня часто можно. Оставьте запись кнопкой ниже, и студия подтвердит время в чате."
+    }
+  ]
+}

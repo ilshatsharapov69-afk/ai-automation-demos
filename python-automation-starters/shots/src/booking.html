@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+:root { --bg:#0f1115; --panel:#171a21; --text:#e6e6e6; --muted:#8b93a1; --ok:#5fd38d; --accent:#6aa7ff;
+        --bot:#1f2530; --me:#2b5278; --btn:#243041; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; }
+.wrap { padding:28px 32px; }
+h1 { font-size:20px; margin:0 0 4px; }
+.sub { color:var(--muted); margin:0 0 18px; font-size:14px; }
+pre { background:var(--panel); border-radius:10px; padding:18px 20px; margin:0; font:13.5px/1.5 "JetBrains Mono", Menlo, Consolas, monospace; white-space:pre-wrap; }
+.ok { color:var(--ok); } .dim { color:var(--muted); } .q { color:var(--accent); }
+.cols { display:grid; grid-template-columns: 1.25fr 1fr; gap:22px; }
+.chat { background:var(--panel); border-radius:12px; padding:14px; }
+.chat h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 10px; }
+.msg { max-width:88%; padding:8px 12px; border-radius:12px; margin:6px 0; white-space:pre-wrap; }
+.bot { background:var(--bot); border-top-left-radius:4px; }
+.me { background:var(--me); margin-left:auto; border-top-right-radius:4px; }
+.tap { margin-left:auto; color:var(--muted); font-size:12.5px; text-align:right; max-width:88%; }
+.kb { display:flex; flex-wrap:wrap; gap:4px; margin:4px 0 8px; max-width:88%; }
+.kb span { background:var(--btn); color:#cfe0ff; padding:5px 9px; border-radius:7px; font-size:13px; }
+ body{width:1100px}</style></head><body><div class="wrap"><h1>02 · Booking bot: service → day → time → admin confirms</h1><p class="sub">Rendered from a real run of the bot&#x27;s handlers with the offline fake Telegram (tests/fakebot.py)</p><div class="cols"><div class="chat"><h2>Client</h2><div class="msg me">/start</div><div class="msg bot">Здравствуйте! Я помогу записаться. Выберите действие:</div><div class="kb"><span>📅 Записаться</span><span>🗂 Мои записи</span></div><div class="tap">tapped “📅 Записаться”</div><div class="msg bot">Выберите услугу:</div><div class="kb"><span>Стрижка (60 мин) · 1500 ₽</span><span>Окрашивание (120 мин) · 4000 ₽</span><span>Консультация (30 мин)</span><span>← Назад</span></div><div class="tap">tapped “Стрижка (60 мин) · 1500 ₽”</div><div class="msg bot">Выберите день:</div><div class="kb"><span>Чт 05.11</span><span>Пт 06.11</span><span>Сб 07.11</span><span>Пн 09.11</span><span>Вт 10.11</span><span>Ср 11.11</span><span>← Назад</span></div><div class="tap">tapped “Пт 06.11”</div><div class="msg bot">Свободное время на Пт 06.11:</div><div class="kb"><span>10:00</span><span>10:30</span><span>11:00</span><span>11:30</span><span>12:00</span><span>12:30</span><span>13:00</span><span>13:30</span><span>14:00</span><span>14:30</span><span>15:00</span><span>15:30</span><span>16:00</span><span>16:30</span><span>17:00</span><span>17:30</span><span>18:00</span><span>← Назад</span></div><div class="tap">tapped “12:00”</div><div class="msg bot">Проверьте запись:
+Стрижка
+Пт 06.11 12:00
+
+Подтвердить?</div><div class="kb"><span>✅ Подтвердить</span><span>← Назад</span></div><div class="tap">tapped “✅ Подтвердить”</div><div class="msg bot">Готово! Заявка №1 отправлена администратору, придёт подтверждение.</div><div class="kb"><span>📅 Записаться</span><span>🗂 Мои записи</span></div><div class="msg bot">✅ Запись №1 подтверждена: Стрижка, Пт 06.11 12:00. Ждём вас!</div></div><div class="chat"><h2>Admin</h2><div class="msg bot">🆕 Запись №1
+Стрижка
+Пт 06.11 12:00
+Клиент: @client (<span data-href="tg://user?id=100">id 100</span>)</div><div class="kb"><span>✅ Подтвердить</span><span>❌ Отклонить</span></div><div class="tap">tapped “✅ Подтвердить”</div><div class="msg bot">🆕 Запись №1
+Стрижка
+Пт 06.11 12:00
+Клиент: @client (id 100)
+
+Статус: подтверждена</div></div></div></div></body></html>

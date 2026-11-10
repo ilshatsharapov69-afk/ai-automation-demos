@@ -1,0 +1,6 @@
+httpx>=0.27
+python-dotenv>=1.0
+# Telegram front-end (python -m faqbot --telegram)
+aiogram>=3.13,<4
+# Only for LLM_PROVIDER=anthropic
+anthropic>=2.5

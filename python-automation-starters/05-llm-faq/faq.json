@@ -1,0 +1,69 @@
+{
+  "business": {"ru": "пекарня «Тёплый хлеб» (вымышленная, демо)", "en": "Warm Bread Bakery (fictional demo)"},
+  "handoff": {
+    "ru": "Точного ответа в нашей базе нет — передал вопрос менеджеру, он ответит здесь в течение рабочего дня.",
+    "en": "I don't have an exact answer in our knowledge base, so I've passed your question to a manager who will reply here within a working day."
+  },
+  "entries": [
+    {
+      "id": "hours",
+      "q": {"ru": "Какой у вас график работы? Во сколько открываетесь и закрываетесь?", "en": "What are your opening hours? When do you open and close?"},
+      "a": {"ru": "Работаем каждый день с 8:00 до 21:00, в праздники — с 9:00 до 18:00.", "en": "We are open every day 8:00–21:00; on public holidays 9:00–18:00."},
+      "tags": ["часы", "время работы", "режим", "открыты", "выходные", "schedule", "open", "hours", "weekend"]
+    },
+    {
+      "id": "delivery_price",
+      "q": {"ru": "Сколько стоит доставка?", "en": "How much does delivery cost?"},
+      "a": {"ru": "Доставка 199 ₽, бесплатно при заказе от 1500 ₽.", "en": "Delivery is 199 ₽, free for orders over 1500 ₽."},
+      "tags": ["доставка", "цена доставки", "стоимость доставки", "бесплатная доставка", "курьер", "delivery fee", "shipping", "price", "cost"]
+    },
+    {
+      "id": "delivery_time",
+      "q": {"ru": "Как быстро привезёте заказ? Сколько ждать доставку?", "en": "How fast is delivery? How long will I wait?"},
+      "a": {"ru": "Обычно 60–90 минут. Можно выбрать точное время при заказе, за 2 часа до него.", "en": "Usually 60–90 minutes. You can also pick an exact time when ordering, at least 2 hours ahead."},
+      "tags": ["сроки", "быстро", "когда привезут", "ждать", "время доставки", "how long", "fast", "when", "wait"]
+    },
+    {
+      "id": "payment",
+      "q": {"ru": "Как можно оплатить? Принимаете карты?", "en": "How can I pay? Do you take cards?"},
+      "a": {"ru": "Картой онлайн, по СБП, картой или наличными курьеру.", "en": "Card online, SBP (fast payments), or card or cash to the courier."},
+      "tags": ["оплата", "карта", "наличные", "сбп", "платить", "payment", "pay", "card", "cash"]
+    },
+    {
+      "id": "custom_cake",
+      "q": {"ru": "Можно заказать торт на день рождения? За сколько дней?", "en": "Can I order a birthday cake? How far in advance?"},
+      "a": {"ru": "Да, торты на заказ от 1,5 кг, заказ не позднее чем за 3 дня, предоплата 50 %.", "en": "Yes, custom cakes from 1.5 kg; order at least 3 days ahead with a 50% prepayment."},
+      "tags": ["торт", "на заказ", "день рождения", "праздник", "свадьба", "cake", "custom", "birthday", "wedding"]
+    },
+    {
+      "id": "gluten",
+      "q": {"ru": "Есть ли выпечка без глютена или без сахара?", "en": "Do you have gluten-free or sugar-free products?"},
+      "a": {"ru": "Да: безглютеновый хлеб и два вида печенья без сахара. Цех общий, следы глютена возможны.", "en": "Yes: gluten-free bread and two sugar-free cookies. The kitchen is shared, so traces of gluten are possible."},
+      "tags": ["глютен", "аллергия", "сахар", "диабет", "веган", "состав", "gluten", "allergy", "sugar", "vegan", "ingredients"]
+    },
+    {
+      "id": "refund",
+      "q": {"ru": "Что делать, если заказ привезли не тот или испорченный? Как вернуть деньги?", "en": "What if the order is wrong or damaged? How do I get a refund?"},
+      "a": {"ru": "Пришлите фото в этот чат в течение 24 часов — заменим или вернём деньги на карту за 1–3 дня.", "en": "Send a photo to this chat within 24 hours and we will replace it or refund your card within 1–3 days."},
+      "tags": ["возврат", "вернуть деньги", "испорчен", "не тот", "жалоба", "refund", "wrong", "damaged", "complaint", "return"]
+    },
+    {
+      "id": "loyalty",
+      "q": {"ru": "Есть ли скидки или бонусная карта?", "en": "Do you have discounts or a loyalty card?"},
+      "a": {"ru": "Бонусная программа: 5 % заказа возвращаются баллами, в день рождения скидка 15 %.", "en": "Loyalty programme: 5% of each order back as points, and 15% off on your birthday."},
+      "tags": ["скидка", "бонусы", "баллы", "акция", "промокод", "discount", "loyalty", "points", "promo"]
+    },
+    {
+      "id": "zone",
+      "q": {"ru": "Куда вы доставляете? Какая зона доставки?", "en": "Where do you deliver? What is the delivery area?"},
+      "a": {"ru": "В пределах 7 км от пекарни; адрес можно проверить при оформлении заказа на сайте.", "en": "Within 7 km of the bakery; you can check your address at checkout on the website."},
+      "tags": ["зона", "район", "адрес", "куда", "далеко", "area", "zone", "address", "where", "distance"]
+    },
+    {
+      "id": "corporate",
+      "q": {"ru": "Делаете ли кейтеринг или заказы для офиса?", "en": "Do you do catering or office orders?"},
+      "a": {"ru": "Да, кофе-брейки и выпечка для офисов от 20 человек, с договором и безналичной оплатой.", "en": "Yes, coffee breaks and pastries for offices from 20 people, with a contract and bank transfer."},
+      "tags": ["кейтеринг", "офис", "корпоратив", "юрлицо", "безнал", "catering", "office", "corporate", "company", "invoice"]
+    }
+  ]
+}

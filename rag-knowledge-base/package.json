@@ -1,0 +1,19 @@
+{
+  "name": "rag-knowledge-base",
+  "version": "1.0.0",
+  "description": "Demo RAG over a company knowledge base: chunking, multilingual embeddings (Workers AI bge-m3), Vectorize + D1 FTS5 hybrid search with reciprocal rank fusion, cited answers (Cloudflare Workers).",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/*.test.mjs\"",
+    "ingest": "node scripts/ingest.mjs",
+    "warm": "node scripts/warm.mjs",
+    "eval": "node scripts/eval.mjs",
+    "shots": "node scripts/shots.mjs",
+    "deploy": "node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.157.0"
+  }
+}

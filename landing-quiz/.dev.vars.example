@@ -1,0 +1,5 @@
+# Copy to .dev.vars for `npm run dev` (wrangler dev). Without TG_BOT_TOKEN leads are stored but not sent.
+ADMIN_PASSWORD=demo
+# TG_BOT_TOKEN=123456:ABC...
+# TG_CHAT_ID=123456789
+OWNER_LANG=en

@@ -1,0 +1,29 @@
+name = "landing-quiz-demo"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# The landing page (public/) is served as static assets; /api/* and /admin* fall through to the Worker.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "404-page"
+# Browser navigations to a missing asset get the 404 page without waking the Worker, so the dynamic paths must run the Worker first.
+run_worker_first = ["/api/*", "/admin", "/admin/*", "/owner-demo"]
+html_handling = "auto-trailing-slash"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "landing-quiz-demo"
+# Created with `wrangler d1 create landing-quiz-demo`.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+OWNER_LANG = "ru"            # language of the Telegram card and the leads table: "ru" or "en"
+TIME_ZONE = "UTC"            # time zone of the dates in the leads table (any IANA tz database name)
+RATE_LIMIT_PER_HOUR = "5"    # leads accepted per IP per hour (HTTP 429 after that)
+DEMO_DAILY_CAP = "150"       # demo only: leads accepted by the whole site per rolling 24 hours (0 = no cap)
+DEMO_MODE = "1"              # demo only: no Telegram bot, the response carries the card the owner would get
+ALLOWED_ORIGINS = ""         # other sites allowed to post leads (embedding the quiz), comma-separated
+# Secrets (never here): TG_BOT_TOKEN, TG_CHAT_ID, ADMIN_PASSWORD, IP_SALT -> scripts/deploy.mjs sets them

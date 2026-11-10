@@ -1,0 +1,20 @@
+{
+  "name": "channel-autopost-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for a channel owner: content queue, AI drafts (Workers AI), schedule, previews with approve/edit, stats, paid-access skeleton (mock payment). Cloudflare Workers + D1.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --no-warnings=ExperimentalWarning --test --test-reporter=spec test/*.test.mjs",
+    "transcript": "node --no-warnings=ExperimentalWarning scripts/transcript.mjs",
+    "shots": "node --no-warnings=ExperimentalWarning scripts/shots.mjs",
+    "dev": "wrangler dev --test-scheduled",
+    "deploy": "node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.157.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

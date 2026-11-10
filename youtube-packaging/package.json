@@ -1,0 +1,17 @@
+{
+  "name": "video-packager-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Demo tool: paste a video script or transcript, get 5 titles with reasons, a description with computed chapters, tags, a pinned comment and thumbnail text; plus a views/subscribers outlier finder. Cloudflare Worker + static assets + Workers AI, offline fallback.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "start": "node scripts/serve.mjs",
+    "dev": "npx wrangler dev",
+    "shots": "node scripts/shots.mjs",
+    "deploy": "npx wrangler deploy"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

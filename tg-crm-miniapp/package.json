@@ -1,0 +1,20 @@
+{
+  "name": "tg-crm-miniapp",
+  "version": "1.0.0",
+  "description": "Telegram Mini App CRM for a small sales team: leads, statuses, notes, owners, reminders, daily digest, stats (Cloudflare Workers + D1).",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --no-warnings=ExperimentalWarning --test --test-reporter=spec test/*.test.mjs",
+    "preview": "node --no-warnings=ExperimentalWarning scripts/preview.mjs",
+    "shots": "node --no-warnings=ExperimentalWarning scripts/shots.mjs",
+    "dev": "wrangler dev",
+    "deploy": "node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.157.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

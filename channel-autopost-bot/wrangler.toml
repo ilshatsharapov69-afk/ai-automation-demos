@@ -1,0 +1,32 @@
+name = "channel-autopost-bot"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "channel-autopost-bot"
+# scripts/deploy.mjs replaces this with the id of the database it creates on the first run.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+# Workers AI for "✨ AI draft" (free daily allowance, no API key). Without it the bot uses the offline template.
+[ai]
+binding = "AI"
+
+# Every 5 minutes: publish posts whose time has come; paid-access reminders and expiry.
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+DEMO_MODE = "on"                       # "on": every visitor gets a private sandbox, posts come back to their chat. "off": your channel (see README)
+OWNER_IDS = ""                         # live mode: Telegram ids of the people who manage the channel, comma-separated
+CHANNEL_ID = ""                        # live mode: where posts go, "@your_channel" or "-100..." (the bot must be an admin there)
+CHANNEL_TITLE = "My channel"           # live mode: channel name used in texts and in the AI prompt (/title changes it)
+PAID_CHANNEL_ID = ""                   # live mode: private channel for paid access ("-100..."); the bot must be an admin with "Invite users"
+CURRENCY = "USD"                       # USD, EUR or RUB (plan prices are in src/paywall.js)
+DEFAULT_SLOTS = "09:00,13:00,19:00"    # publishing times for a new workspace (/slots changes them)
+TZ_OFFSET = "0"                        # UTC offset of those times for a new workspace, e.g. "+2" (/tz changes it)
+AI_MODE = "on"                         # "off": always use the offline template
+AI_DAILY_LIMIT = "20"                  # AI drafts per workspace per day; past it the offline template answers
+# Secrets (never here; scripts/deploy.mjs sets them): BOT_TOKEN, WEBHOOK_SECRET

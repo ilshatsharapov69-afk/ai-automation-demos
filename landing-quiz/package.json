@@ -1,0 +1,20 @@
+{
+  "name": "landing-quiz-demo",
+  "version": "1.0.0",
+  "description": "Demo landing page for a fictional renovation company: 5-step cost quiz, lead form, Cloudflare Worker that validates the lead, stores it in D1 and sends it to the owner's Telegram, password-protected leads table. RU/EN.",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test --disable-warning=ExperimentalWarning --test-reporter=spec test/*.test.mjs",
+    "serve": "node scripts/serve-local.mjs",
+    "shots": "node scripts/shots.mjs",
+    "dev": "wrangler dev --port 8787",
+    "db:local": "wrangler d1 migrations apply landing-quiz-demo --local",
+    "deploy": "node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.157.0"
+  }
+}

@@ -1,0 +1,28 @@
+name = "tg-crm-miniapp-demo"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# The Mini App (public/index.html, app.js, app.css) is served by this Worker as static assets.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tg-crm-miniapp-demo"
+# scripts/deploy.mjs replaces this with the id of the database it creates on the first run.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+# No cron trigger: reminders are computed when the app reads them (overdue / today / upcoming buckets, the tab badge,
+# the digest preview). A bot deployment can add `[triggers] crons = ["*/15 * * * *"]` to send pings and the morning digest.
+
+[vars]
+DEMO_MODE = "on"          # "on": every visitor gets a private sandbox with fictional data. "off": one real team (see README)
+ADMIN_IDS = ""            # team mode: Telegram user ids of the admins, comma-separated
+CURRENCY = "USD"          # any ISO 4217 code, e.g. "RUB", "EUR"
+DIGEST_HOUR = "9"         # local hour of the morning digest (each member's own UTC offset, sent by the Mini App)
+INIT_DATA_MAX_AGE = "86400"  # seconds a Mini App session (initData) stays valid
+# Secrets (never here): SESSION_SECRET (signs the browser-demo cookie; required for the browser demo).
+# Optional, for the Telegram bot path: BOT_TOKEN, WEBHOOK_SECRET, APP_URL, BOT_USERNAME (scripts/deploy.mjs sets them).

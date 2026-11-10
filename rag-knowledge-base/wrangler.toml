@@ -1,0 +1,26 @@
+name = "rag-knowledge-base-demo"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "rag-knowledge-base-demo"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rag-knowledge-base-demo"
+# Created by `node scripts/deploy.mjs` (a plain identifier, not a secret).
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+EMBED_MODEL = "@cf/baai/bge-m3"
+CHAT_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast" # the 8B model misread passages in Russian (measured), so the cap below is what keeps the free budget safe
+PER_IP_HOURLY = "6"      # generated answers per visitor per hour
+DAILY_CAP = "30"         # generated answers per day for everyone; past it the page shows search results only
+MIN_VECTOR_SCORE = "0.5" # below this best cosine score the base is treated as "has no answer" (no LLM call)
+# Secret (never here), set by scripts/deploy.mjs: ADMIN_KEY - lifts the limits for the warm-up and eval scripts.
